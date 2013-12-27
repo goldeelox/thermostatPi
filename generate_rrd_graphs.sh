@@ -22,7 +22,7 @@
 
 
 #!/bin/bash
-RRDPATH="/home/cdrum/thermostatpi/"
+RRDPATH="/home/pi/thermostatpi/"
 RAWCOLOUR="#FF0000"
 RAWCOLOUR2="#CC0000"
 TRENDCOLOUR="#0000FF"
@@ -31,44 +31,30 @@ TRENDCOLOUR2="#0000CC"
 # Edited 2012/12/9 to add running averages to hourly and daily graphs
 
 #hour
-rrdtool graph $RRDPATH/rrdgraphs/hour.png --upper-limit 30 --lower-limit 20 --rigid --start -6h \
+rrdtool graph $RRDPATH/rrdgraphs/hour.png --alt-autoscale --start -6h \
 DEF:temp1=$RRDPATH/rPItemp.rrd:temp1:AVERAGE \
-DEF:temp2=$RRDPATH/rPItemp.rrd:temp2:AVERAGE \
 CDEF:trend1=temp1,1800,TREND \
-CDEF:trend2=temp2,1800,TREND \
-LINE2:temp1$RAWCOLOUR:"Hourly Raspberry PI temperature - 1" \
-LINE1:trend1$TRENDCOLOUR:"30 min average" \
-LINE2:temp2$RAWCOLOUR2:"Hourly Raspberry PI temperature - 2" \
-LINE1:trend2$TRENDCOLOUR2:"30 min average"
+LINE2:temp1$RAWCOLOUR:"Hourly Temperature" \
+LINE1:trend1$TRENDCOLOUR:"30m Average"
 
 #day
-rrdtool graph $RRDPATH/rrdgraphs/day.png --upper-limit 30 --lower-limit 20 --rigid --start -1d \
+rrdtool graph $RRDPATH/rrdgraphs/day.png --alt-autoscale --start -1d \
 DEF:temp1=$RRDPATH/rPItemp.rrd:temp1:AVERAGE \
-DEF:temp2=$RRDPATH/rPItemp.rrd:temp2:AVERAGE \
 CDEF:trend1=temp1,21600,TREND \
-CDEF:trend2=temp2,21600,TREND \
-LINE2:temp1$RAWCOLOUR:"Daily Raspberry PI temperature - 1" \
-LINE1:trend1$TRENDCOLOUR:"6h average" \
-LINE2:temp2$RAWCOLOUR2:"Daily Raspberry PI temperature - 2" \
-LINE1:trend2$TRENDCOLOUR2:"6h average"
+LINE2:temp1$RAWCOLOUR:"Daily Temperature" \
+LINE1:trend1$TRENDCOLOUR:"6h Average"
 
 #week
 rrdtool graph $RRDPATH/rrdgraphs/week.png --start -1w \
 DEF:temp1=$RRDPATH/rPItemp.rrd:temp1:AVERAGE \
-DEF:temp2=$RRDPATH/rPItemp.rrd:temp2:AVERAGE \
-LINE2:temp1$RAWCOLOUR:"Weekly Raspberry PI temperature - 1" \
-LINE2:temp2$RAWCOLOUR2:"Weekly Raspberry PI temperature - 2" 
+LINE2:temp1$RAWCOLOUR:"Weekly Temperature"
 
 #month
 rrdtool graph $RRDPATH/rrdgraphs/month.png --start -1m \
 DEF:temp1=$RRDPATH/rPItemp.rrd:temp1:AVERAGE \
-DEF:temp2=$RRDPATH/rPItemp.rrd:temp2:AVERAGE \
-LINE1:temp1$RAWCOLOUR:"Monthly Raspberry PI temperature - 1" \
-LINE1:temp2$RAWCOLOUR2:"Monthly Raspberry PI temperature - 2" 
+LINE1:temp1$RAWCOLOUR:"Monthly Temperature"
 
 #year
 rrdtool graph $RRDPATH/rrdgraphs/year.png --start -1y \
 DEF:temp1=$RRDPATH/rPItemp.rrd:temp1:AVERAGE \
-DEF:temp2=$RRDPATH/rPItemp.rrd:temp2:AVERAGE \
-LINE1:temp1$RAWCOLOUR:"Yearly Raspberry PI temperature - 1" \
-LINE1:temp1$RAWCOLOUR2:"Yearly Raspberry PI temperature - 2" 
+LINE1:temp1$RAWCOLOUR:"Yearly Temperature"

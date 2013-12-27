@@ -43,9 +43,14 @@
 					var hours = date.getHours();
 					var minutes = date.getMinutes();
 					var seconds = date.getSeconds();
-					
+
+					// 12 hour clock
+				        var ampm = hours >= 12 ? 'PM' : 'AM';
+					hours = hours % 12;
+					hours = hours ? hours : 12;
+	
 					// Prefix with 0 if less than 10
-					if (minutes < 10) {
+					if (hours < 10) {
 						hours = "0" + hours;
 					}
 					if (minutes < 10) {
@@ -56,14 +61,14 @@
 					}
 					
 					// Concatinate Date and Time into a single string
-					var formattedTime = hours + ':' + minutes + ':' + seconds;
+					var formattedTime = hours + ':' + minutes + ':' + seconds + ' ' + ampm;
 					$('#currentTime').text(formattedTime);
 					
 					// Loop through each temperature reading
 					$('.currentTemperatureContainer').empty();
 					$.each(data.temperatures, function(k, v) {
 						$('.currentTemperatureContainer').append('<div id="' + v.device + '"></div>');
-						$('#' + v.device).text(v.temperature  + '\u00B0' + "C");
+						$('#' + v.device).text(Math.round(v.temperature*10)/10  + '\u00B0' + " F");
 					});
 				}
 				

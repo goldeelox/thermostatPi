@@ -19,8 +19,7 @@ sudo apt-get install rrdtool
 
 Set up RRD DB:
 $ rrdtool create rPItemp.rrd --step 300 \
-DS:temp1:GAUGE:600:-30:50 \
-DS:temp2:GAUGE:600:-30:50 \
+DS:temp1:GAUGE:600:-50:5000 \
 RRA:AVERAGE:0.5:1:12 \
 RRA:AVERAGE:0.5:1:288 \
 RRA:AVERAGE:0.5:12:168 \

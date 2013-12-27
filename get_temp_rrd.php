@@ -58,7 +58,7 @@ foreach($devicesArray as $deviceCode) {
 	
 	// We're only interested in the 2nd line, and the value after the t= on the 2nd line
 	preg_match("/t=(.+)/", preg_split("/\n/", $thermometerReadings)[1], $matches);
-	$temperature = $matches[1] / 1000;
+	$temperature = $matches[1] / 1000 * 9 / 5 + 32;
 	
 	// Construct the temperature array for this device
 	$payload = array();
@@ -73,8 +73,8 @@ foreach($devicesArray as $deviceCode) {
 
 // Save temp in rrd (2 values only for now...)
 $temp1 = $temperatures[0];
-$temp2 = $temperatures[1];
-system("/usr/bin/rrdtool update  /home/cdrum/thermostatpi/rPItemp.rrd N:$temp1:$temp2");
+//$temp2 = $temperatures[1];
+system("/usr/bin/rrdtool update /home/pi/thermostatpi/rPItemp.rrd N:$temp1");
 
 echo json_encode($resultArray);
 echo "\n";

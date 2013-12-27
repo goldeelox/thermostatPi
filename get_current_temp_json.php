@@ -58,7 +58,7 @@ foreach($devicesArray as $deviceCode) {
 	
 	// We're only interested in the 2nd line, and the value after the t= on the 2nd line
 	preg_match("/t=(.+)/", preg_split("/\n/", $thermometerReadings)[1], $matches);
-	$temperature = $matches[1] / 1000;
+	$temperature = $matches[1] / 1000 * 9 / 5 + 32;
 	
 	// Construct the temperature array for this device
 	$payload = array();
