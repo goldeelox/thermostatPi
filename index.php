@@ -36,9 +36,7 @@ require_once "includes.inc.php";
 		
 		<!-- Set the viewport width to device width for mobile -->
 		<meta name="viewport" content="width=device-width" />
-		
 		<title>ThermostatPi</title>
-		
 		<link rel="stylesheet" href="stylesheets/foundation.css">
 		<link rel="stylesheet" href="stylesheets/app.css">
 		
@@ -54,16 +52,14 @@ require_once "includes.inc.php";
 		
 		<!-- Initialize JS Plugins -->
 		<script src="javascripts/app.js"></script>
-		
 		<script src="javascripts/thermostatpi.temperature.ajax.js"></script>
-		
+
 		<!-- Header -->
 		<div class="row header">
 			<div class="twelve columns">
 				ThermostatPi
 			</div>
 		</div>
-		
 		<!-- Body -->
 		<div class="row">
 			<div class="twelve mobile-four columns">
@@ -72,8 +68,8 @@ require_once "includes.inc.php";
 				<dl class="tabs contained mobile">
 					<dd class="active"><a href="#tempStatusView">Status</a></dd>
 					<dd><a href="#tempControlView">Controls</a></dd>
+					<dd><a href="#tempHistoryView">History</a></dd>
 				</dl>
-				
 				<ul class="tabs-content contained ">
 					<li class="active" id="tempStatusViewTab">
 						<div class="row">
@@ -146,7 +142,6 @@ require_once "includes.inc.php";
 								*/?>
 							</div>
 						</div>
-						
 						<div class="row">
 							<div class="six mobile-four columns">
 								<div class="panel radius">
@@ -190,13 +185,65 @@ require_once "includes.inc.php";
 						</div>
 						
 					</li>
+					<li id="tempHistoryViewTab">
+						<div class="row">
+							<div class="twelve mobile-four columns">
+								<h1><small>Temperature History</small></h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="twelve mobile-four columns">
+								<h3><small>Hourly History Chart</small></h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="twelve mobile-four columns">
+								<div class="hourlyChart"><img id="hourlyChart" src="rrdgraphs/hour.png"/></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="twelve mobile-four columns">
+								<h3><small>Daily History Chart</small></h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="twelve mobile-four columns">
+								<div class="dailyChart"><img id="dailyChart" src="rrdgraphs/day.png"/></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="twelve mobile-four columns">
+								<h3><small>Weekly History Chart</small></h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="twelve mobile-four columns">
+								<div class="weeklyChart"><img id="weeklyChart" src="rrdgraphs/week.png"/></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="twelve mobile-four columns">
+								<h3><small>Monthly History Chart</small></h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="twelve mobile-four columns">
+								<div class="monthlyChart"><img id="monthlyChart" src="rrdgraphs/month.png"/></div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="twelve mobile-four columns">
+								<h3><small>Yearly History Chart</small></h3>
+							</div>
+						</div>
+						<div class="row">
+							<div class="twelve mobile-four columns">
+								<div class="yearlyChart"><img id="yearlyChart" src="rrdgraphs/year.png"/></div>
+							</div>
+						</div>
+					</li>
 				</ul>
-				
-				
 			</div>
 		</div>
-	
-		
-
 	</body>
 </html>
